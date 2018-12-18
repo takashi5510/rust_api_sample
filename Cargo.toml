@@ -1,0 +1,7 @@
+[package]
+name = "rust-sample-api"
+version = "0.1.0"
+authors = ["Takashi Ishii <x-ishii@fujisan.co.jp>"]
+edition = "2018"
+
+[dependencies]

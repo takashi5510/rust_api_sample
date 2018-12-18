@@ -1,0 +1,4 @@
+[[package]]
+name = "rust-sample-api"
+version = "0.1.0"
+
