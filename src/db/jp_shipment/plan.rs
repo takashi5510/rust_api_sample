@@ -32,10 +32,10 @@ impl Plan {
 }
 
 impl NewPlan {
-    pub fn save(new_plan: NewPlan) -> Result<Plan, diesel::result::Error> {
+    pub fn save(self) -> Result<Plan, diesel::result::Error> {
         let conn = super::establish_connection();
         diesel::insert_into(t_japan_post_shipment_plan::table)
-            .values(&new_plan)
+            .values(self)
             .get_result(&conn)
     }
 }
@@ -51,5 +51,5 @@ pub fn save() {
         schedule_id: 1234,
         deadline_date: NaiveDate::from_ymd(2016, 7, 8).and_hms(9, 10, 11),
     };
-    println!("{:?}", NewPlan::save(new_plan));
+    println!("{:?}", new_plan.save());
 }
