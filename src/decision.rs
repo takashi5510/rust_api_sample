@@ -1,5 +1,5 @@
 #[derive(Insertable)]
-#[table_name="t_japan_post_shipment_decision"]
+#[table_name = "t_japan_post_shipment_decision"]
 pub struct NewDecision<'a> {
     pub schedule_id: &'a i32,
 }
@@ -7,10 +7,10 @@ pub struct NewDecision<'a> {
 #[derive(Queryable, Debug)]
 pub struct Decision {
     pub id: i32,
-    pub schedule_id: i32
+    pub schedule_id: i32,
 }
 
-// table! -> 
+// table! ->
 // pub mod t_japan_post_shipment_decision{
 //   pub mod dsl {
 //     id...
@@ -24,10 +24,9 @@ table! {
 }
 
 pub fn select() -> std::result::Result<std::vec::Vec<Decision>, diesel::result::Error> {
-    use super::*;
-    use self::t_japan_post_shipment_decision::dsl::*;
+    use self::t_japan_post_shipment_decision::dsl::t_japan_post_shipment_decision;
+    use super::{establish_connection, RunQueryDsl};
 
     let connection = establish_connection();
     t_japan_post_shipment_decision.load::<Decision>(&connection)
-//        .expect("Error loading t_japan_post_shipment_decision");
 }
