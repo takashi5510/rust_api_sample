@@ -114,7 +114,7 @@ pub fn save_and_delete() {
         updated_date: Local::now().naive_local(),
         removed_date: None,
     };
-    match (new_plan.save()) {
+    match new_plan.save() {
         Ok(target_plan) => {
             let rs = Plan::delete(target_plan.id);
             println!("{:?}", rs.unwrap())
