@@ -1,2 +1,5 @@
 [build]
 #rustflags = ["-Aproc-macro-derive-resolution-fallback"]
+
+[test]
+#rustflags = ["-Aproc-macro-derive-resolution-fallback"]
