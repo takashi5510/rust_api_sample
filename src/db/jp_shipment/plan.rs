@@ -98,8 +98,7 @@ pub fn find_by_id() {
 }
 
 #[test]
-pub fn save() {
-    use crate::db::jp_shipment::plan::t_japan_post_shipment_plan::columns::id;
+pub fn save_and_delete() {
     let new_plan = NewPlan {
         schedule_id: 1234,
         deadline_date: NaiveDate::from_ymd(2016, 7, 8).and_hms(9, 10, 11),
@@ -115,8 +114,17 @@ pub fn save() {
         updated_date: Local::now().naive_local(),
         removed_date: None,
     };
-    if let Ok(target_plan) = new_plan.save() {
-        let rs = Plan::delete(target_plan.id);
-        println!("{:?},{:?}", target_plan, rs.unwrap());
-    };
+    match (new_plan.save()) {
+        Ok(target_plan) => {
+            let rs = Plan::delete(target_plan.id);
+            println!("{:?}", rs.unwrap())
+        }
+        Err(e) => println!("{:?}", e),
+    }
+    /*
+        if let Ok(target_plan) = new_plan.save() {
+            let rs = Plan::delete(target_plan.id);
+            println!("{:?},{:?}", target_plan, rs.unwrap());
+        };
+    */
 }
