@@ -89,7 +89,7 @@ impl NewPlan {
 
 #[test]
 pub fn find_all() {
-    println!("{:?}", Plan::find_all());
+    println!("{:?}", Plan::find_all().unwrap());
 }
 
 #[test]
